@@ -1,14 +1,19 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import {
   ThemeProvider,
   createMuiTheme,
 } from '@material-ui/core';
 import { createGlobalStyle } from 'styled-components';
 
-import { withContext } from 'app/utils/context';
-
+import { withContext } from 'app/context';
 import Header from 'app/components/Header';
+import UtilArea from 'app/components/UtilArea';
+
+import List from 'app/pages/List';
+import Pokemon from 'app/pages/Pokemon';
+
+import { PokeProvider } from 'app/context/poke';
 
 const App = ({ context }) => {
   const { theme: ctxTheme } = context;
@@ -27,9 +32,6 @@ const App = ({ context }) => {
       warning: {
         main: ctxTheme.colors.warning,
       },
-      text: {
-        primary: ctxTheme.colors.text,
-      },
     },
     typography: {
       htmlFontSize: +(ctxTheme.font.size.replace('px', '')),
@@ -42,6 +44,7 @@ const App = ({ context }) => {
       font-family: ${ctxTheme.font.family};
       background: ${ctxTheme.colors.paper.primary};
       margin: 0;
+      color: ${ctxTheme.colors.text};
       @media (max-width: ${ctxTheme.breakpoints.md - 1}px) {
         background: ${ctxTheme.colors.paper.primary};
       }
@@ -53,6 +56,15 @@ const App = ({ context }) => {
       <GlobalStyle context={context} />
       <BrowserRouter>
         <Header />
+        <UtilArea>
+          <PokeProvider>
+            <Switch>
+              <Route path="/" exact component={List} />
+              <Route path="/pokemon/:query" exact component={Pokemon} />
+              <Route render={() => <Redirect to={{pathname: "/"}} />} />
+            </Switch>
+          </PokeProvider>
+        </UtilArea>
       </BrowserRouter>
     </ThemeProvider>
   );

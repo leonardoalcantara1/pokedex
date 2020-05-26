@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { withContext } from 'app/utils/context';
+import { withContext } from 'app/context';
 
 export const Styled = withContext(styled.header`
   display: flex;

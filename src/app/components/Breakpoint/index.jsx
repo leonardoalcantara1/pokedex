@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { withContext } from 'app/utils/context';
+import { withContext } from 'app/context';
 
 const Breakpoint = ({
   context,

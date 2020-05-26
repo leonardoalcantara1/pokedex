@@ -3,7 +3,7 @@
   "name": "Pokedéx FrontEnd",
   "icons": [
     {
-      "src": "logo.png",
+      "src": "favicon.ico",
       "type": "image/png",
       "sizes": "256x256"
     }

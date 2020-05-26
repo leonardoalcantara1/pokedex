@@ -1,9 +1,11 @@
 import React from 'react';
-import { UtilAreaComponent } from './style';
+import { UtilAreaComponent, Wrapper } from './style';
 
 const UtilArea = ({ children }) => (
   <UtilAreaComponent>
-    {children}
+    <Wrapper>
+      {children}
+    </Wrapper>
   </UtilAreaComponent>
 );
 

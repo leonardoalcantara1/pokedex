@@ -21,7 +21,8 @@ const darkTheme = {
   },
   dimensions: {
     headerHeight: '90px',
-    utilArea: '1366px',
+    utilArea: '800px',
+    spacing: '8px',
   },
   breakpoints: {
     lg: 1280,

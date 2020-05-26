@@ -1,20 +1,8 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 const AppContext = createContext('app');
 
-const darkTheme = {
-  colors: {
-    paper: {
-      primary: '#1b1b1b',
-      secondary: '#2b2b2b',
-    },
-    main: '#FFD670',
-    secondary: '#FF70A6',
-    success: '#70D6FF',
-    warning: '#FF9770',
-    text: '#fafafa',
-    text2: '#C9C9C9',
-  },
+const staticTheme = {
   font: {
     family: "'Balsamiq Sans', cursive",
     size: '16px',
@@ -31,11 +19,67 @@ const darkTheme = {
   },
 };
 
+const dark = {
+  colors: {
+    paper: {
+      primary: '#1b1b1b',
+      secondary: '#2b2b2b',
+    },
+    main: '#FFD670',
+    secondary: '#FF70A6',
+    success: '#70D6FF',
+    warning: '#FF9770',
+    text: '#fafafa',
+    text2: '#C9C9C9',
+  },
+}
+
+const light = {
+  colors: {
+    paper: {
+      primary: '#fafafa',
+      secondary: '#C9C9C9',
+    },
+    main: '#F39237',
+    secondary: '#BF1363',
+    success: '#0E79B2',
+    warning: '#BD632F',
+    text: '#1b1b1b',
+    text2: '#2b2b2b',
+  },
+}
+
 export const AppProvider = ({ children }) => {
-  const [theme] = useState(darkTheme);
+  const [theme, setTheme] = useState({
+    ...dark,
+    ...staticTheme
+  });
+  const [colorsTheme, setColorsTheme] = useState('dark');
+  const toggleTheme = () => {
+    if (colorsTheme === 'dark') {
+      setColorsTheme('light');
+    } else {
+      setColorsTheme('dark');
+    }
+  }
+
+  useEffect(() => {
+    if (colorsTheme === 'dark') {
+      setTheme({
+        ...dark,
+        ...staticTheme
+      });
+    } else {
+      setTheme({
+        ...light,
+        ...staticTheme
+      });
+    }
+  }, [colorsTheme]);
+
   return (
     <AppContext.Provider
-      value={{ theme }}
+      value={{ theme, toggleTheme, colorsTheme }}
     >
       {children}
     </AppContext.Provider>

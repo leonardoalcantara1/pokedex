@@ -16,10 +16,10 @@ import Pokemon from 'app/pages/Pokemon';
 import { PokeProvider } from 'app/context/poke';
 
 const App = ({ context }) => {
-  const { theme: ctxTheme } = context;
+  const { theme: ctxTheme, colorsTheme } = context;
   const theme = createMuiTheme({
     palette: {
-      type: 'dark',
+      type: colorsTheme,
       primary: {
         main: ctxTheme.colors.main,
       },

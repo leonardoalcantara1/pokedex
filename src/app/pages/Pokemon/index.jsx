@@ -11,6 +11,7 @@ import {
   Home
 } from '@material-ui/icons';
 
+import Breakpoint from 'app/components/Breakpoint';
 import { withContext as withPokeCtx } from 'app/context/poke';
 import { withContext } from 'app/context';
 
@@ -47,12 +48,15 @@ const Single = (props) => {
             </Typography>
           </Grid>
         </Grid>
-        <Grid item container xs={12} style={{ alignItems: 'flex-start' }} spacing={4}>
+        <Grid item container xs={12} style={{ alignItems: 'flex-start', justifyContent: 'center' }} spacing={4}>
           <Grid item>
             <Card variant="outlined">
               <img src={pokemon?.sprites.front_default} alt="" />
             </Card>
           </Grid>
+          <Breakpoint sm>
+            <Grid item xs={12} />
+          </Breakpoint>
           <Grid item container xs spacing={2}>
             <Grid item container xs={12} spacing={2}>
               {

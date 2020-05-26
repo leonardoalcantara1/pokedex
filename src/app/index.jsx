@@ -46,7 +46,7 @@ const App = ({ context }) => {
       margin: 0;
       color: ${ctxTheme.colors.text};
       @media (max-width: ${ctxTheme.breakpoints.md - 1}px) {
-        background: ${ctxTheme.colors.paper.primary};
+        font-size: ${ctxTheme.font.mobileSize};
       }
     }
   `;
